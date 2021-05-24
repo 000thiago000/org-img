@@ -7,7 +7,7 @@ for i in arquivos:
 
     if os.path.isfile(pasta + '/' + i ) :
 
-        data = time.ctime(os.path.getctime(pasta + '/' + i))
+        data = time.ctime(os.path.getmtime(pasta + '/' + i))
         data = data.split()
 
         if not os.path.exists(pasta + '/' + data[4]):
@@ -16,4 +16,7 @@ for i in arquivos:
         if not os.path.exists(pasta + '/' + data[4] + '/' + data[1]):
             os.makedirs(pasta + '/' + data[4] + '/' + data[1])
 
-        os.rename(pasta + '/' + i, pasta + '/' + data[4] + '/' + data[1] + '/' + i)
+        if not os.path.exists(pasta + '/' + data[4] + '/' + data[1] + '/' + data[2]):
+            os.makedirs(pasta + '/' + data[4] + '/' + data[1] + '/' + data[2])
+
+        os.rename(pasta + '/' + i, pasta + '/' + data[4] + '/' + data[1] + '/' + data[2] + '/' + i)
